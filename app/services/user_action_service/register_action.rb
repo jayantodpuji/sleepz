@@ -1,3 +1,4 @@
+require_relative "errors"
 module UserActionService
   class RegisterAction < BaseService
     attr_reader :user, :user_action, :action_time
@@ -8,7 +9,7 @@ module UserActionService
       @user_action = user_action
       @action_time = action_time
 
-      @sleep_records = sleep_records
+      @sleep_records = user.sleep_records
       @user_actions = user.user_actions.order(:created_at)
     end
 
@@ -20,7 +21,7 @@ module UserActionService
         handle_sleep_records
       end
 
-      @user_actions.reload!
+      @user_actions.reload
     end
 
     private def handle_sleep_records
@@ -44,7 +45,7 @@ module UserActionService
 
     private def validate_no_sleep_records
       if sleep_records.empty?
-        raise SleepRecord::InvalidActionError, "Invalid action. User does not have a sleep record."
+        raise InvalidActionError, "Invalid action. User does not have a sleep record."
       end
     end
 
