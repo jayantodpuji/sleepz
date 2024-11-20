@@ -4,55 +4,80 @@ RSpec.describe "Api::V1::UserActionsController", type: :request do
   let!(:user) { User.create!(name: "Verde") }
 
   describe "POST /api/v1/user_actions" do
-    context "when the user has no previous actions and sleep records" do
-      it "creates a new user_actions and sleep_records" do
-        post "/api/v1/user_actions", params: { user_id: user.id, user_action: "sleep", user_action_time: Time.current }
+    describe "user has no previous records" do
+      context "when user register sleep action" do
+        it "returns http status OK and user_actions history data" do
+          post "/api/v1/user_actions", params: { user_id: user.id, user_action: "sleep", user_action_time: Time.current }
 
-        expect(response).to have_http_status(:ok)
-        expect(JSON.parse(response.body).length).to eq(1)
+          expect(response).to have_http_status(:ok)
+          expect(JSON.parse(response.body).length).to eq(1)
 
-        sleep_records = user.sleep_records
-        expect(sleep_records.count).to eq(1)
-        expect(sleep_records.first.sleep_time).to be_present
-        expect(sleep_records.first.wake_time).to be_nil
-        expect(sleep_records.first.duration_in_second).to be_nil
+          sleep_records = user.sleep_records
+          expect(sleep_records.count).to eq(1)
+          expect(sleep_records.first.sleep_time).to be_present
+          expect(sleep_records.first.wake_time).to be_nil
+          expect(sleep_records.first.duration_in_second).to be_nil
 
-        user_actions = user.user_actions
-        expect(user_actions.count).to eq(1)
-        expect(user_actions.first.action).to eq("sleep")
+          user_actions = user.user_actions
+          expect(user_actions.count).to eq(1)
+          expect(user_actions.first.action).to eq("sleep")
+        end
+      end
+
+      context "when user register awake action" do
+        it "returns unprocessable_content" do
+          post "/api/v1/user_actions", params: { user_id: user.id, user_action: "awake", user_action_time: Time.current }
+          expect(response).to have_http_status(:unprocessable_content)
+        end
       end
     end
 
-    # context "when the user already has previous actions" do
-    #   before do
-    #     user.user_actions.create!(action: "sleep", action_time: Time.current - 24.hour)
-    #     user.user_actions.create!(action: "awake", action_time: Time.current - 23.hour)
-    #   end
+    describe "user has previous records" do
+      describe "user last action is sleep" do
+        before do
+          action_time = Time.current - 24.hour
+          user.user_actions.create!(action: "sleep", action_time: action_time)
+          user.sleep_records.create!(sleep_time: action_time)
+        end
 
-    #   it "creates a new user action if it is a valid transition" do
-    #     post "/api/v1/user_actions", params: { user_id: user.id, user_action: "sleep", user_action_time: Time.current }
+        context "when user register awake action" do
+          it "returns http status OK and user_actions history data" do
+            post "/api/v1/user_actions", params: { user_id: user.id, user_action: "awake", user_action_time: Time.current }
+            expect(response).to have_http_status(:ok)
+            expect(JSON.parse(response.body).length).to eq(2)
+          end
+        end
 
-    #     expect(response).to have_http_status(:ok)
-    #     expect(JSON.parse(response.body).length).to eq(3)
-    #   end
+        context "when user register sleep action" do
+          it "returns unprocessable_content" do
+            post "/api/v1/user_actions", params: { user_id: user.id, user_action: "sleep", user_action_time: Time.current }
+            expect(response).to have_http_status(:unprocessable_content)
+          end
+        end
+      end
 
-    #   it "returns an error if the last action is the same as the new action" do
-    #     post "/api/v1/user_actions", params: { user_id: user.id, user_action: "awake", user_action_time: Time.current }
+      describe "user last action is awake" do
+        before do
+          action_time = Time.current
+          user.user_actions.create!(action: "awake", action_time: action_time)
+          user.sleep_records.create!(sleep_time: action_time - 20.hours, wake_time: action_time)
+        end
 
-    #     expect(response).to have_http_status(:unprocessable_entity)
-    #     expect(JSON.parse(response.body)).to eq({ "error" => "Invalid action. Last action was also awake" })
-    #   end
+        context "when user register sleep action" do
+          it "returns http status OK and user_actions history data" do
+            post "/api/v1/user_actions", params: { user_id: user.id, user_action: "sleep", user_action_time: Time.current }
+            expect(response).to have_http_status(:ok)
+            expect(JSON.parse(response.body).length).to eq(2)
+          end
+        end
 
-    #   it "returns actions ordered by created_at ascending after creating a new action" do
-    #     post "/api/v1/user_actions", params: { user_id: user.id, user_action: "sleep", user_action_time: Time.current }
-
-    #     expect(response).to have_http_status(:ok)
-
-    #     user_actions = JSON.parse(response.body)
-
-    #     created_at_times = user_actions.map { |action| action["created_at"] }
-    #     expect(created_at_times).to eq(created_at_times.sort)
-    #   end
-    # end
+        context "when user register awake action" do
+          it "returns unprocessable_content" do
+            post "/api/v1/user_actions", params: { user_id: user.id, user_action: "awake", user_action_time: Time.current }
+            expect(response).to have_http_status(:unprocessable_content)
+          end
+        end
+      end
+    end
   end
 end

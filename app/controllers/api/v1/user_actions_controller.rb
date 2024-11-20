@@ -10,12 +10,12 @@ class Api::V1::UserActionsController < ApplicationController
 
     if user_sleep_records.size > 0
       last_sleep_record = user_sleep_records.last
-      if last_sleep_record.wake_time == null && create_action_params[:user_action] == "sleep"
+      if last_sleep_record.wake_time == nil && create_action_params[:user_action] == "sleep"
         render json: { error: "invalid action. user can't track sleep time again" }, status: :unprocessable_entity
         return
       end
 
-      if last_sleep_record.wake_time != null && last_sleep_record.sleep_time != null && create_action_params[:user_action] == "awake"
+      if last_sleep_record.wake_time != nil && last_sleep_record.sleep_time != nil && create_action_params[:user_action] == "awake"
         render json: { error: "invalid action. user can't track awake time" }, status: :unprocessable_entity
         return
       end
