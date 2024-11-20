@@ -1,5 +1,5 @@
-module SleepRecord
-  class RegisterService < BaseService
+module UserAction
+  class RegisterAction < BaseService
     attr_reader :user, :user_action, :action_time
     attr_reader :sleep_records, :user_actions
 

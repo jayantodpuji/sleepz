@@ -1,3 +1,3 @@
-module SleepRecord
+module UserAction
   class InvalidActionError < StandardError; end
 end
