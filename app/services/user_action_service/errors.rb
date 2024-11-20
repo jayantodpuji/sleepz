@@ -1,3 +1,3 @@
-module UserAction
+module UserActionService
   class InvalidActionError < StandardError; end
 end
