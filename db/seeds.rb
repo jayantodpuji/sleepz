@@ -29,6 +29,6 @@ users.each do |current_user|
 
     UserAction.create!(user: current_user, action: "sleep", action_time: sleep_time)
     UserAction.create!(user: current_user, action: "awake", action_time: awake_time)
-    SleepRecord.create!(user: current_user, sleep_time: sleep_time, awake_time: awake_time)
+    SleepRecord.create!(user: current_user, sleep_time: sleep_time, wake_time: awake_time)
   end
 end
