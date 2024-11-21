@@ -2,8 +2,20 @@ module Api
   module V1
     class FollowsController < ApplicationController
       def create
-        follower = User.find(follow_params[:follower_id])
-        followed = User.find(follow_params[:followed_id])
+        follower = User.find_by(id: follow_params[:follower_id])
+        followed = User.find_by(id: follow_params[:followed_id])
+
+        if follower.nil?
+          return render json: { error: "Follower not found" }, status: :unprocessable_entity
+        end
+
+        if followed.nil?
+          return render json: { error: "Followed user not found" }, status: :unprocessable_entity
+        end
+
+        if follower.id == followed.id
+          return render json: { error: "You cannot follow yourself" }, status: :unprocessable_entity
+        end
 
         Follow.create!(follower: follower, followed: followed)
         head :no_content
@@ -12,7 +24,6 @@ module Api
       end
 
       private def follow_params
-        # TODO: should we use params.require(:follow).permit(:follower_id, :followed_id)? need to research
         params.permit(:follower_id, :followed_id)
       end
     end
