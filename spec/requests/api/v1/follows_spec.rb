@@ -46,14 +46,14 @@ RSpec.describe "Api::V1::FollowsController", type: :request do
         post "/api/v1/follows", params: { followed_id: user_bob.id }
 
         expect(response).to have_http_status(:unprocessable_entity)
-        expect(JSON.parse(response.body)["error"]).to eq("Follower not found")
+        expect(JSON.parse(response.body)["error"]).to eq("Follower ID cannot be blank")
       end
 
       it "returns unprocessable entity when followed_id is missing" do
         post "/api/v1/follows", params: { follower_id: user_alice.id }
 
         expect(response).to have_http_status(:unprocessable_entity)
-        expect(JSON.parse(response.body)["error"]).to eq("Followed user not found")
+        expect(JSON.parse(response.body)["error"]).to eq("Followed ID cannot be blank")
       end
     end
   end

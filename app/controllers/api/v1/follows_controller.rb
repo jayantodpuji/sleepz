@@ -2,25 +2,13 @@ module Api
   module V1
     class FollowsController < ApplicationController
       def create
-        follower = User.find_by(id: follow_params[:follower_id])
-        followed = User.find_by(id: follow_params[:followed_id])
+        FollowService::CreateFollow.call(follow_params[:follower_id], follow_params[:followed_id])
 
-        if follower.nil?
-          return render json: { error: "Follower not found" }, status: :unprocessable_entity
-        end
-
-        if followed.nil?
-          return render json: { error: "Followed user not found" }, status: :unprocessable_entity
-        end
-
-        if follower.id == followed.id
-          return render json: { error: "You cannot follow yourself" }, status: :unprocessable_entity
-        end
-
-        Follow.create!(follower: follower, followed: followed)
         head :no_content
-      rescue ActiveRecord::RecordInvalid => e
+      rescue FollowService::UserNotFoundError, FollowService::InvalidActionError => e
         render json: { error: e.message }, status: :unprocessable_entity
+      rescue StandardError
+        render json: { error: 'An unexpected error occurred. Please try again later.' }, status: :internal_server_error
       end
 
       private def follow_params
