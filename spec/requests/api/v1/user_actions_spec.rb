@@ -7,7 +7,7 @@ RSpec.describe "Api::V1::UserActionsController", type: :request do
     describe "user has no previous records" do
       context "when user register sleep action" do
         it "returns http status OK and user_actions history data" do
-          post "/api/v1/user_actions", params: { user_id: user.id, user_action: "sleep", user_action_time: Time.current }
+          post "/api/v1/user_actions", params: { user_id: user.id, user_action: "sleep", user_action_time: Time.current.iso8601 }
 
           expect(response).to have_http_status(:ok)
           expect(JSON.parse(response.body).length).to eq(1)
@@ -26,7 +26,7 @@ RSpec.describe "Api::V1::UserActionsController", type: :request do
 
       context "when user register awake action" do
         it "returns unprocessable_content" do
-          post "/api/v1/user_actions", params: { user_id: user.id, user_action: "awake", user_action_time: Time.current }
+          post "/api/v1/user_actions", params: { user_id: user.id, user_action: "awake", user_action_time: Time.current.iso8601 }
           expect(response).to have_http_status(:unprocessable_content)
         end
       end
@@ -35,14 +35,14 @@ RSpec.describe "Api::V1::UserActionsController", type: :request do
     describe "user has previous records" do
       describe "user last action is sleep" do
         before do
-          action_time = Time.current - 24.hour
+          action_time = (Time.current - 24.hour).iso8601
           user.user_actions.create!(action: "sleep", action_time: action_time)
           user.sleep_records.create!(sleep_time: action_time)
         end
 
         context "when user register awake action" do
           it "returns http status OK and user_actions history data" do
-            post "/api/v1/user_actions", params: { user_id: user.id, user_action: "awake", user_action_time: Time.current }
+            post "/api/v1/user_actions", params: { user_id: user.id, user_action: "awake", user_action_time: Time.current.iso8601 }
             expect(response).to have_http_status(:ok)
             expect(JSON.parse(response.body).length).to eq(2)
           end
@@ -50,7 +50,7 @@ RSpec.describe "Api::V1::UserActionsController", type: :request do
 
         context "when user register sleep action" do
           it "returns unprocessable_content" do
-            post "/api/v1/user_actions", params: { user_id: user.id, user_action: "sleep", user_action_time: Time.current }
+            post "/api/v1/user_actions", params: { user_id: user.id, user_action: "sleep", user_action_time: Time.current.iso8601 }
             expect(response).to have_http_status(:unprocessable_content)
           end
         end
@@ -58,14 +58,14 @@ RSpec.describe "Api::V1::UserActionsController", type: :request do
 
       describe "user last action is awake" do
         before do
-          action_time = Time.current
+          action_time = Time.current.iso8601
           user.user_actions.create!(action: "awake", action_time: action_time)
           user.sleep_records.create!(sleep_time: action_time - 20.hours, wake_time: action_time)
         end
 
         context "when user register sleep action" do
           it "returns http status OK and user_actions history data" do
-            post "/api/v1/user_actions", params: { user_id: user.id, user_action: "sleep", user_action_time: Time.current }
+            post "/api/v1/user_actions", params: { user_id: user.id, user_action: "sleep", user_action_time: Time.current.iso8601 }
             expect(response).to have_http_status(:ok)
             expect(JSON.parse(response.body).length).to eq(2)
           end
@@ -73,7 +73,7 @@ RSpec.describe "Api::V1::UserActionsController", type: :request do
 
         context "when user register awake action" do
           it "returns unprocessable_content" do
-            post "/api/v1/user_actions", params: { user_id: user.id, user_action: "awake", user_action_time: Time.current }
+            post "/api/v1/user_actions", params: { user_id: user.id, user_action: "awake", user_action_time: Time.current.iso8601 }
             expect(response).to have_http_status(:unprocessable_content)
           end
         end

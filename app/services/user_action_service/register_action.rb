@@ -4,8 +4,6 @@ module UserActionService
     attr_reader :user, :user_action, :action_time
     attr_reader :sleep_records, :user_actions
 
-    # TODO: need to validate user_action params to only accept sleep, awake
-    # TODO: need to validate action_time format string to RFC399
     def initialize(user, user_action, action_time)
       @user = user
       @user_action = user_action
@@ -16,6 +14,8 @@ module UserActionService
     end
 
     def call
+      validate_allowed_user_action!
+      validate_action_time!
       validate_user_action!
 
       ActiveRecord::Base.transaction do
@@ -26,17 +26,28 @@ module UserActionService
       @user_actions.reload
     end
 
+    private def validate_action_time!
+      DateTime.iso8601(action_time)
+    rescue ArgumentError
+      debugger
+      raise InvalidActionError, "Invalid action_time format. Expected ISO 8601 format."
+    end
+
+    private def validate_allowed_user_action!
+      raise InvalidActionError unless [Constants::SLEEP_ACTION, Constants::AWAKE_ACTION].include?(user_action)
+    end
+
     private def handle_sleep_records
       if is_sleep_request?
-        sleep_records.create!(sleep_time: action_time)
+        sleep_records.create!(sleep_time: DateTime.iso8601(action_time))
       else
         last_sleep_record = sleep_records.last
-        last_sleep_record.update!(wake_time: action_time)
+        last_sleep_record.update!(wake_time: DateTime.iso8601(action_time))
       end
     end
 
     private def create_user_actions
-      user_actions.create!(action: user_action, action_time: action_time)
+      user_actions.create!(action: user_action, action_time: DateTime.iso8601(action_time))
     end
 
     private def validate_user_action!
