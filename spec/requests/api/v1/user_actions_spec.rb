@@ -43,8 +43,9 @@ RSpec.describe "Api::V1::UserActionsController", type: :request do
         context "when user register awake action" do
           it "returns http status OK and user_actions history data" do
             post "/api/v1/user_actions", params: { user_id: user.id, user_action: "awake", user_action_time: Time.current.iso8601 }
+
             expect(response).to have_http_status(:ok)
-            expect(JSON.parse(response.body).length).to eq(2)
+            expect(JSON.parse(response.body)["data"].length).to eq(2)
           end
         end
 
@@ -58,7 +59,7 @@ RSpec.describe "Api::V1::UserActionsController", type: :request do
 
       describe "user last action is awake" do
         before do
-          action_time = Time.current.iso8601
+          action_time = Time.current
           user.user_actions.create!(action: "awake", action_time: action_time)
           user.sleep_records.create!(sleep_time: action_time - 20.hours, wake_time: action_time)
         end
@@ -67,7 +68,7 @@ RSpec.describe "Api::V1::UserActionsController", type: :request do
           it "returns http status OK and user_actions history data" do
             post "/api/v1/user_actions", params: { user_id: user.id, user_action: "sleep", user_action_time: Time.current.iso8601 }
             expect(response).to have_http_status(:ok)
-            expect(JSON.parse(response.body).length).to eq(2)
+            expect(JSON.parse(response.body)["data"].length).to eq(2)
           end
         end
 

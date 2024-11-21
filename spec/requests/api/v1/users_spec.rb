@@ -24,7 +24,7 @@ RSpec.describe Api::V1::UsersController, type: :request do
 
         expect(response).to have_http_status(:ok)
 
-        sleep_records = JSON.parse(response.body)
+        sleep_records = JSON.parse(response.body)["data"]
 
         expect(sleep_records.size).to eq(2)
 
@@ -38,7 +38,7 @@ RSpec.describe Api::V1::UsersController, type: :request do
         get "/api/v1/users/#{user_kana.id}/timeline"
 
         expect(response).to have_http_status(:ok)
-        expect(JSON.parse(response.body)).to be_empty
+        expect(JSON.parse(response.body)["data"]).to be_empty
       end
     end
   end
