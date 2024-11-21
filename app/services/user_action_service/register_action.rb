@@ -4,6 +4,8 @@ module UserActionService
     attr_reader :user, :user_action, :action_time
     attr_reader :sleep_records, :user_actions
 
+    # TODO: need to validate user_action params to only accept sleep, awake
+    # TODO: need to validate action_time format string to RFC399
     def initialize(user, user_action, action_time)
       @user = user
       @user_action = user_action
