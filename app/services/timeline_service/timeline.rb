@@ -10,7 +10,6 @@ module TimelineService
       user = User.find_by(id: user_id)
       raise UserNotFoundError, "User not found" unless user
 
-      debugger
       sleep_records = SleepRecord
         .where(user_id: user.followings.pluck(:followed_id))
         .where('created_at >= ?', 1.week.ago)
