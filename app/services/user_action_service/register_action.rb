@@ -10,7 +10,7 @@ module UserActionService
       @action_time = action_time
 
       @sleep_records = user.sleep_records
-      @user_actions = user.user_actions.order(:created_at, :desc)
+      @user_actions = user.user_actions.order(:created_at)
     end
 
     def call

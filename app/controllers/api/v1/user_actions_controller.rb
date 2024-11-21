@@ -9,11 +9,12 @@ module Api
           create_action_params[:user_action],
           create_action_params[:user_action_time]
         )
-        # TODO: find proper way to serialize to json
-        render json: updated_user_actions, status: :ok
+
+        render json: UserActionSerializer.new(updated_user_actions).serializable_hash, status: :ok
       rescue UserActionService::InvalidActionError => e
         render json: { error: e.message }, status: :unprocessable_entity
-      rescue StandardError
+      rescue StandardError => e
+        puts e
         render json: { error: 'An unexpected error occurred. Please try again later.' }, status: :internal_server_error
       end
 
