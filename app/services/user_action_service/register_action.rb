@@ -23,7 +23,9 @@ module UserActionService
         handle_sleep_records
       end
 
-      @user_actions.reload
+      updated_user_actions = @user.user_actions.order(created_at: :desc)
+
+      updated_user_actions
     end
 
     private def validate_action_time!
