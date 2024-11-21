@@ -15,8 +15,6 @@ module Api
               current_page: timeline_sleep_records.current_page,
               next_page: timeline_sleep_records.next_page,
               prev_page: timeline_sleep_records.prev_page,
-              has_next_page: timeline_sleep_records.next_page.present?,
-              has_prev_page: timeline_sleep_records.prev_page.present?,
               total_pages: timeline_sleep_records.total_pages,
               total_count: timeline_sleep_records.total_count
             }
