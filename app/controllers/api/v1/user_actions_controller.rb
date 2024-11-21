@@ -9,6 +9,7 @@ module Api
           create_action_params[:user_action],
           create_action_params[:user_action_time]
         )
+        # TODO: find proper way to serialize to json
         render json: updated_user_actions, status: :ok
       rescue UserActionService::InvalidActionError => e
         render json: { error: e.message }, status: :unprocessable_entity
