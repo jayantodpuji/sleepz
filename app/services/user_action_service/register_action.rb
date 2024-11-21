@@ -31,7 +31,6 @@ module UserActionService
     private def validate_action_time!
       DateTime.iso8601(action_time)
     rescue ArgumentError
-      debugger
       raise InvalidActionError, "Invalid action_time format. Expected ISO 8601 format."
     end
 
