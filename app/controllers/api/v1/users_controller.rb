@@ -8,20 +8,24 @@ module Api
           params[:per] || 10,
         )
 
-        render json: {
-          data: timeline_sleep_records,
-          pagination: {
-            current_page: timeline_sleep_records.current_page,
-            next_page: timeline_sleep_records.next_page,
-            prev_page: timeline_sleep_records.prev_page,
-            total_pages: timeline_sleep_records.total_pages,
-            total_count: timeline_sleep_records.total_count
+        render json: SleepRecordSerializer.new(
+          timeline_sleep_records,
+          meta: {
+            pagination: {
+              current_page: timeline_sleep_records.current_page,
+              next_page: timeline_sleep_records.next_page,
+              prev_page: timeline_sleep_records.prev_page,
+              has_next_page: timeline_sleep_records.next_page.present?,
+              has_prev_page: timeline_sleep_records.prev_page.present?,
+              total_pages: timeline_sleep_records.total_pages,
+              total_count: timeline_sleep_records.total_count
+            }
           }
-        }, status: :ok
+        ).serializable_hash, status: :ok
       rescue TimelineService::UserNotFoundError => e
         render json: { error: e.message }, status: :unprocessable_entity
-      rescue StandardError
-        render json: { error: 'An unexpected error occurred. Please try again later.' }, status: :internal_server_error
+      rescue StandardError => e
+        render json: { error: e.message }, status: :internal_server_error
       end
     end
   end

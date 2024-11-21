@@ -13,6 +13,7 @@ module TimelineService
       raise UserNotFoundError, "User not found" unless user
 
       sleep_records = SleepRecord
+        .includes([:user])
         .where(user_id: user.followings.pluck(:followed_id))
         .where('created_at >= ?', 1.week.ago)
         .order(duration_in_second: :desc)
