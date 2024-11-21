@@ -32,3 +32,5 @@ users.each do |current_user|
     SleepRecord.create!(user: current_user, sleep_time: sleep_time, wake_time: awake_time)
   end
 end
+
+10.times.map { User.create!(name: Faker::Name.unique.name) }
