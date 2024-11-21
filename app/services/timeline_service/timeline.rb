@@ -1,9 +1,11 @@
 require_relative "errors"
 module TimelineService
   class Timeline < BaseService
-    attr_reader :user_id
-    def initialize(user_id)
+    attr_reader :user_id, :page, :per
+    def initialize(user_id, page, per)
       @user_id = user_id
+      @page = page
+      @per = per
     end
 
     def call
@@ -14,6 +16,8 @@ module TimelineService
         .where(user_id: user.followings.pluck(:followed_id))
         .where('created_at >= ?', 1.week.ago)
         .order(duration_in_second: :desc)
+        .page(page)
+        .per(per)
 
       sleep_records
     end
