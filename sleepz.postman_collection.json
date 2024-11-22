@@ -1,0 +1,1085 @@
+{
+	"info": {
+		"_postman_id": "e00fd9bd-17d9-480c-b6a2-3aad509b4949",
+		"name": "sleepz",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "15925323"
+	},
+	"item": [
+		{
+			"name": "timeline",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/users/21/timeline?page=10&per=5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"users",
+						"21",
+						"timeline"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "10"
+						},
+						{
+							"key": "per",
+							"value": "5"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "422 - user not found",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/users/1/timeline?page=10&per=5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"1",
+								"timeline"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "10"
+								},
+								{
+									"key": "per",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"status": "Unprocessable Content",
+					"code": 422,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "x-frame-options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "x-xss-protection",
+							"value": "0"
+						},
+						{
+							"key": "x-content-type-options",
+							"value": "nosniff"
+						},
+						{
+							"key": "x-permitted-cross-domain-policies",
+							"value": "none"
+						},
+						{
+							"key": "referrer-policy",
+							"value": "strict-origin-when-cross-origin"
+						},
+						{
+							"key": "content-type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "vary",
+							"value": "Accept, Origin"
+						},
+						{
+							"key": "cache-control",
+							"value": "no-cache"
+						},
+						{
+							"key": "x-request-id",
+							"value": "64582285-4903-4994-9e7d-b9236b52a11a"
+						},
+						{
+							"key": "x-runtime",
+							"value": "0.280272"
+						},
+						{
+							"key": "server-timing",
+							"value": "sql.active_record;dur=29.45, start_processing.action_controller;dur=0.03, instantiation.active_record;dur=0.02, process_action.action_controller;dur=93.73"
+						},
+						{
+							"key": "Content-Length",
+							"value": "26"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"User not found\"\n}"
+				},
+				{
+					"name": "200",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/users/21/timeline?page=10&per=5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"21",
+								"timeline"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "10"
+								},
+								{
+									"key": "per",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "x-frame-options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "x-xss-protection",
+							"value": "0"
+						},
+						{
+							"key": "x-content-type-options",
+							"value": "nosniff"
+						},
+						{
+							"key": "x-permitted-cross-domain-policies",
+							"value": "none"
+						},
+						{
+							"key": "referrer-policy",
+							"value": "strict-origin-when-cross-origin"
+						},
+						{
+							"key": "content-type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "vary",
+							"value": "Accept, Origin"
+						},
+						{
+							"key": "etag",
+							"value": "W/\"75c61b120de347e95323e38467d25d63\""
+						},
+						{
+							"key": "cache-control",
+							"value": "max-age=0, private, must-revalidate"
+						},
+						{
+							"key": "x-request-id",
+							"value": "15573eb4-bd48-4595-a722-16edacc06116"
+						},
+						{
+							"key": "x-runtime",
+							"value": "0.107036"
+						},
+						{
+							"key": "server-timing",
+							"value": "start_processing.action_controller;dur=0.01, sql.active_record;dur=15.81, instantiation.active_record;dur=22.44, process_action.action_controller;dur=73.37"
+						},
+						{
+							"key": "Content-Length",
+							"value": "894"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": [\n        {\n            \"id\": \"182\",\n            \"type\": \"sleep_record\",\n            \"attributes\": {\n                \"duration_in_second\": 14400,\n                \"user_display_name\": \"Warner Jast DC\",\n                \"created_at\": \"2024-11-21T10:08:13.367Z\"\n            }\n        },\n        {\n            \"id\": \"122\",\n            \"type\": \"sleep_record\",\n            \"attributes\": {\n                \"duration_in_second\": 14400,\n                \"user_display_name\": \"Marquis Bashirian\",\n                \"created_at\": \"2024-11-21T10:08:12.481Z\"\n            }\n        },\n        {\n            \"id\": \"124\",\n            \"type\": \"sleep_record\",\n            \"attributes\": {\n                \"duration_in_second\": 14400,\n                \"user_display_name\": \"Marquis Bashirian\",\n                \"created_at\": \"2024-11-21T10:08:12.508Z\"\n            }\n        },\n        {\n            \"id\": \"128\",\n            \"type\": \"sleep_record\",\n            \"attributes\": {\n                \"duration_in_second\": 14400,\n                \"user_display_name\": \"Marquis Bashirian\",\n                \"created_at\": \"2024-11-21T10:08:12.562Z\"\n            }\n        },\n        {\n            \"id\": \"139\",\n            \"type\": \"sleep_record\",\n            \"attributes\": {\n                \"duration_in_second\": 14400,\n                \"user_display_name\": \"Ashley Collins\",\n                \"created_at\": \"2024-11-21T10:08:12.720Z\"\n            }\n        }\n    ],\n    \"meta\": {\n        \"pagination\": {\n            \"current_page\": 10,\n            \"next_page\": 11,\n            \"prev_page\": 9,\n            \"total_pages\": 19,\n            \"total_count\": 94\n        }\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "all users",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/users/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"users",
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "200",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/users/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "x-frame-options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "x-xss-protection",
+							"value": "0"
+						},
+						{
+							"key": "x-content-type-options",
+							"value": "nosniff"
+						},
+						{
+							"key": "x-permitted-cross-domain-policies",
+							"value": "none"
+						},
+						{
+							"key": "referrer-policy",
+							"value": "strict-origin-when-cross-origin"
+						},
+						{
+							"key": "content-type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "vary",
+							"value": "Accept, Origin"
+						},
+						{
+							"key": "etag",
+							"value": "W/\"bb6776fd89225e3987f1b320ac20dd3a\""
+						},
+						{
+							"key": "cache-control",
+							"value": "max-age=0, private, must-revalidate"
+						},
+						{
+							"key": "x-request-id",
+							"value": "f1eaa3fe-017b-4f83-a194-5e472b858a3c"
+						},
+						{
+							"key": "x-runtime",
+							"value": "0.017925"
+						},
+						{
+							"key": "server-timing",
+							"value": "start_processing.action_controller;dur=0.01, sql.active_record;dur=0.64, instantiation.active_record;dur=0.13, process_action.action_controller;dur=4.52"
+						},
+						{
+							"key": "Content-Length",
+							"value": "2290"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": 21,\n        \"name\": \"Ward Brown\",\n        \"created_at\": \"2024-11-21T10:08:11.155Z\",\n        \"updated_at\": \"2024-11-21T10:08:11.155Z\"\n    },\n    {\n        \"id\": 22,\n        \"name\": \"Echo Wehner\",\n        \"created_at\": \"2024-11-21T10:08:11.160Z\",\n        \"updated_at\": \"2024-11-21T10:08:11.160Z\"\n    },\n    {\n        \"id\": 23,\n        \"name\": \"Marquis Bashirian\",\n        \"created_at\": \"2024-11-21T10:08:11.165Z\",\n        \"updated_at\": \"2024-11-21T10:08:11.165Z\"\n    },\n    {\n        \"id\": 24,\n        \"name\": \"Ashley Collins\",\n        \"created_at\": \"2024-11-21T10:08:11.169Z\",\n        \"updated_at\": \"2024-11-21T10:08:11.169Z\"\n    },\n    {\n        \"id\": 25,\n        \"name\": \"Janee Schinner\",\n        \"created_at\": \"2024-11-21T10:08:11.173Z\",\n        \"updated_at\": \"2024-11-21T10:08:11.173Z\"\n    },\n    {\n        \"id\": 26,\n        \"name\": \"Elouise Davis IV\",\n        \"created_at\": \"2024-11-21T10:08:11.178Z\",\n        \"updated_at\": \"2024-11-21T10:08:11.178Z\"\n    },\n    {\n        \"id\": 27,\n        \"name\": \"Everette Wunsch\",\n        \"created_at\": \"2024-11-21T10:08:11.183Z\",\n        \"updated_at\": \"2024-11-21T10:08:11.183Z\"\n    },\n    {\n        \"id\": 28,\n        \"name\": \"Veda Gulgowski\",\n        \"created_at\": \"2024-11-21T10:08:11.188Z\",\n        \"updated_at\": \"2024-11-21T10:08:11.188Z\"\n    },\n    {\n        \"id\": 29,\n        \"name\": \"Warner Jast DC\",\n        \"created_at\": \"2024-11-21T10:08:11.192Z\",\n        \"updated_at\": \"2024-11-21T10:08:11.192Z\"\n    },\n    {\n        \"id\": 30,\n        \"name\": \"Mrs. Mason Will\",\n        \"created_at\": \"2024-11-21T10:08:11.196Z\",\n        \"updated_at\": \"2024-11-21T10:08:11.196Z\"\n    },\n    {\n        \"id\": 31,\n        \"name\": \"Tawanda Flatley III\",\n        \"created_at\": \"2024-11-21T10:08:13.637Z\",\n        \"updated_at\": \"2024-11-21T10:08:13.637Z\"\n    },\n    {\n        \"id\": 32,\n        \"name\": \"Allegra Christiansen\",\n        \"created_at\": \"2024-11-21T10:08:13.643Z\",\n        \"updated_at\": \"2024-11-21T10:08:13.643Z\"\n    },\n    {\n        \"id\": 33,\n        \"name\": \"Niesha Walsh\",\n        \"created_at\": \"2024-11-21T10:08:13.646Z\",\n        \"updated_at\": \"2024-11-21T10:08:13.646Z\"\n    },\n    {\n        \"id\": 34,\n        \"name\": \"Sue Ebert\",\n        \"created_at\": \"2024-11-21T10:08:13.651Z\",\n        \"updated_at\": \"2024-11-21T10:08:13.651Z\"\n    },\n    {\n        \"id\": 35,\n        \"name\": \"Virgil Ward Ret.\",\n        \"created_at\": \"2024-11-21T10:08:13.656Z\",\n        \"updated_at\": \"2024-11-21T10:08:13.656Z\"\n    },\n    {\n        \"id\": 36,\n        \"name\": \"Elias Medhurst\",\n        \"created_at\": \"2024-11-21T10:08:13.662Z\",\n        \"updated_at\": \"2024-11-21T10:08:13.662Z\"\n    },\n    {\n        \"id\": 37,\n        \"name\": \"Stepanie O'Kon\",\n        \"created_at\": \"2024-11-21T10:08:13.667Z\",\n        \"updated_at\": \"2024-11-21T10:08:13.667Z\"\n    },\n    {\n        \"id\": 38,\n        \"name\": \"Major Nikolaus\",\n        \"created_at\": \"2024-11-21T10:08:13.672Z\",\n        \"updated_at\": \"2024-11-21T10:08:13.672Z\"\n    },\n    {\n        \"id\": 39,\n        \"name\": \"Raphael Daugherty\",\n        \"created_at\": \"2024-11-21T10:08:13.677Z\",\n        \"updated_at\": \"2024-11-21T10:08:13.677Z\"\n    },\n    {\n        \"id\": 40,\n        \"name\": \"Joleen Gleason\",\n        \"created_at\": \"2024-11-21T10:08:13.681Z\",\n        \"updated_at\": \"2024-11-21T10:08:13.681Z\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "clockIn - Sleep",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"user_id\": 21,\n    \"user_action\": \"sleep\",\n    \"user_action_time\": \"2024-11-22T10:05:43Z\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/user_actions",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"user_actions"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "200",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_id\": 21,\n    \"user_action\": \"sleep\",\n    \"user_action_time\": \"2024-11-22T10:05:43Z\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/user_actions",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"user_actions"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "x-frame-options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "x-xss-protection",
+							"value": "0"
+						},
+						{
+							"key": "x-content-type-options",
+							"value": "nosniff"
+						},
+						{
+							"key": "x-permitted-cross-domain-policies",
+							"value": "none"
+						},
+						{
+							"key": "referrer-policy",
+							"value": "strict-origin-when-cross-origin"
+						},
+						{
+							"key": "content-type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "vary",
+							"value": "Accept, Origin"
+						},
+						{
+							"key": "etag",
+							"value": "W/\"39fdc955a414ed601105fef0fddceac4\""
+						},
+						{
+							"key": "cache-control",
+							"value": "max-age=0, private, must-revalidate"
+						},
+						{
+							"key": "x-request-id",
+							"value": "5aee2983-2931-4b83-848c-e70d98e399b5"
+						},
+						{
+							"key": "x-runtime",
+							"value": "0.098664"
+						},
+						{
+							"key": "server-timing",
+							"value": "start_processing.action_controller;dur=0.01, sql.active_record;dur=11.44, instantiation.active_record;dur=10.09, transaction.active_record;dur=8.70, process_action.action_controller;dur=78.30"
+						},
+						{
+							"key": "Content-Length",
+							"value": "3685"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": [\n        {\n            \"id\": \"418\",\n            \"type\": \"user_action\",\n            \"attributes\": {\n                \"action\": \"sleep\",\n                \"action_time\": \"2024-11-22T10:05:43.000Z\",\n                \"created_at\": \"2024-11-22T05:44:29.558Z\"\n            }\n        },\n        {\n            \"id\": \"417\",\n            \"type\": \"user_action\",\n            \"attributes\": {\n                \"action\": \"awake\",\n                \"action_time\": \"2024-11-22T05:38:47.639Z\",\n                \"created_at\": \"2024-11-22T05:38:47.691Z\"\n            }\n        },\n        {\n            \"id\": \"416\",\n            \"type\": \"user_action\",\n            \"attributes\": {\n                \"action\": \"sleep\",\n                \"action_time\": \"2024-11-22T05:38:41.386Z\",\n                \"created_at\": \"2024-11-22T05:38:41.500Z\"\n            }\n        },\n        {\n            \"id\": \"415\",\n            \"type\": \"user_action\",\n            \"attributes\": {\n                \"action\": \"awake\",\n                \"action_time\": \"2024-11-22T04:49:45.676Z\",\n                \"created_at\": \"2024-11-22T04:49:45.714Z\"\n            }\n        },\n        {\n            \"id\": \"414\",\n            \"type\": \"user_action\",\n            \"attributes\": {\n                \"action\": \"sleep\",\n                \"action_time\": \"2024-11-22T04:49:14.990Z\",\n                \"created_at\": \"2024-11-22T04:49:15.030Z\"\n            }\n        },\n        {\n            \"id\": \"224\",\n            \"type\": \"user_action\",\n            \"attributes\": {\n                \"action\": \"awake\",\n                \"action_time\": \"2024-11-15T05:24:53.000Z\",\n                \"created_at\": \"2024-11-21T10:08:12.322Z\"\n            }\n        },\n        {\n            \"id\": \"223\",\n            \"type\": \"user_action\",\n            \"attributes\": {\n                \"action\": \"sleep\",\n                \"action_time\": \"2024-11-15T03:24:53.000Z\",\n                \"created_at\": \"2024-11-21T10:08:12.317Z\"\n            }\n        },\n        {\n            \"id\": \"222\",\n            \"type\": \"user_action\",\n            \"attributes\": {\n                \"action\": \"awake\",\n                \"action_time\": \"2024-11-17T15:02:57.000Z\",\n                \"created_at\": \"2024-11-21T10:08:12.307Z\"\n            }\n        },\n        {\n            \"id\": \"221\",\n            \"type\": \"user_action\",\n            \"attributes\": {\n                \"action\": \"sleep\",\n                \"action_time\": \"2024-11-17T10:02:57.000Z\",\n                \"created_at\": \"2024-11-21T10:08:12.303Z\"\n            }\n        },\n        {\n            \"id\": \"220\",\n            \"type\": \"user_action\",\n            \"attributes\": {\n                \"action\": \"awake\",\n                \"action_time\": \"2024-11-17T03:21:56.000Z\",\n                \"created_at\": \"2024-11-21T10:08:12.294Z\"\n            }\n        },\n        {\n            \"id\": \"219\",\n            \"type\": \"user_action\",\n            \"attributes\": {\n                \"action\": \"sleep\",\n                \"action_time\": \"2024-11-17T00:21:56.000Z\",\n                \"created_at\": \"2024-11-21T10:08:12.289Z\"\n            }\n        },\n        {\n            \"id\": \"218\",\n            \"type\": \"user_action\",\n            \"attributes\": {\n                \"action\": \"awake\",\n                \"action_time\": \"2024-11-15T13:34:15.000Z\",\n                \"created_at\": \"2024-11-21T10:08:12.280Z\"\n            }\n        },\n        {\n            \"id\": \"217\",\n            \"type\": \"user_action\",\n            \"attributes\": {\n                \"action\": \"sleep\",\n                \"action_time\": \"2024-11-15T07:34:15.000Z\",\n                \"created_at\": \"2024-11-21T10:08:12.276Z\"\n            }\n        },\n        {\n            \"id\": \"216\",\n            \"type\": \"user_action\",\n            \"attributes\": {\n                \"action\": \"awake\",\n                \"action_time\": \"2024-11-14T19:41:21.000Z\",\n                \"created_at\": \"2024-11-21T10:08:12.266Z\"\n            }\n        },\n        {\n            \"id\": \"215\",\n            \"type\": \"user_action\",\n            \"attributes\": {\n                \"action\": \"sleep\",\n                \"action_time\": \"2024-11-14T17:41:21.000Z\",\n                \"created_at\": \"2024-11-21T10:08:12.262Z\"\n            }\n        },\n        {\n            \"id\": \"214\",\n            \"type\": \"user_action\",\n            \"attributes\": {\n                \"action\": \"awake\",\n                \"action_time\": \"2024-11-19T21:01:26.000Z\",\n                \"created_at\": \"2024-11-21T10:08:12.253Z\"\n            }\n        },\n        {\n            \"id\": \"213\",\n            \"type\": \"user_action\",\n            \"attributes\": {\n                \"action\": \"sleep\",\n                \"action_time\": \"2024-11-19T17:01:26.000Z\",\n                \"created_at\": \"2024-11-21T10:08:12.248Z\"\n            }\n        },\n        {\n            \"id\": \"212\",\n            \"type\": \"user_action\",\n            \"attributes\": {\n                \"action\": \"awake\",\n                \"action_time\": \"2024-11-16T07:43:57.000Z\",\n                \"created_at\": \"2024-11-21T10:08:12.238Z\"\n            }\n        },\n        {\n            \"id\": \"211\",\n            \"type\": \"user_action\",\n            \"attributes\": {\n                \"action\": \"sleep\",\n                \"action_time\": \"2024-11-15T23:43:57.000Z\",\n                \"created_at\": \"2024-11-21T10:08:12.234Z\"\n            }\n        },\n        {\n            \"id\": \"210\",\n            \"type\": \"user_action\",\n            \"attributes\": {\n                \"action\": \"awake\",\n                \"action_time\": \"2024-11-16T07:00:26.000Z\",\n                \"created_at\": \"2024-11-21T10:08:12.225Z\"\n            }\n        },\n        {\n            \"id\": \"209\",\n            \"type\": \"user_action\",\n            \"attributes\": {\n                \"action\": \"sleep\",\n                \"action_time\": \"2024-11-16T04:00:26.000Z\",\n                \"created_at\": \"2024-11-21T10:08:12.221Z\"\n            }\n        },\n        {\n            \"id\": \"208\",\n            \"type\": \"user_action\",\n            \"attributes\": {\n                \"action\": \"awake\",\n                \"action_time\": \"2024-11-20T00:07:02.000Z\",\n                \"created_at\": \"2024-11-21T10:08:12.212Z\"\n            }\n        },\n        {\n            \"id\": \"207\",\n            \"type\": \"user_action\",\n            \"attributes\": {\n                \"action\": \"sleep\",\n                \"action_time\": \"2024-11-19T21:07:02.000Z\",\n                \"created_at\": \"2024-11-21T10:08:12.206Z\"\n            }\n        },\n        {\n            \"id\": \"206\",\n            \"type\": \"user_action\",\n            \"attributes\": {\n                \"action\": \"awake\",\n                \"action_time\": \"2024-11-18T02:18:41.000Z\",\n                \"created_at\": \"2024-11-21T10:08:12.176Z\"\n            }\n        },\n        {\n            \"id\": \"205\",\n            \"type\": \"user_action\",\n            \"attributes\": {\n                \"action\": \"sleep\",\n                \"action_time\": \"2024-11-17T21:18:41.000Z\",\n                \"created_at\": \"2024-11-21T10:08:12.171Z\"\n            }\n        }\n    ]\n}"
+				},
+				{
+					"name": "422 - send sleep request twice",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_id\": 21,\n    \"user_action\": \"sleep\",\n    \"user_action_time\": \"2024-11-22T10:05:43Z\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/user_actions",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"user_actions"
+							]
+						}
+					},
+					"status": "Unprocessable Content",
+					"code": 422,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "x-frame-options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "x-xss-protection",
+							"value": "0"
+						},
+						{
+							"key": "x-content-type-options",
+							"value": "nosniff"
+						},
+						{
+							"key": "x-permitted-cross-domain-policies",
+							"value": "none"
+						},
+						{
+							"key": "referrer-policy",
+							"value": "strict-origin-when-cross-origin"
+						},
+						{
+							"key": "content-type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "vary",
+							"value": "Accept, Origin"
+						},
+						{
+							"key": "cache-control",
+							"value": "no-cache"
+						},
+						{
+							"key": "x-request-id",
+							"value": "fc0447ad-bed3-4460-8bec-eab056d266dc"
+						},
+						{
+							"key": "x-runtime",
+							"value": "0.024513"
+						},
+						{
+							"key": "server-timing",
+							"value": "start_processing.action_controller;dur=0.04, sql.active_record;dur=0.90, instantiation.active_record;dur=0.18, process_action.action_controller;dur=5.60"
+						},
+						{
+							"key": "Content-Length",
+							"value": "62"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"Invalid action. User can't track sleep time again.\"\n}"
+				}
+			]
+		},
+		{
+			"name": "clockIn - awake",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"user_id\": 21,\n    \"user_action\": \"awake\",\n    \"user_action_time\": \"2024-11-21T10:05:43Z\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/user_actions",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"user_actions"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "200",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_id\": 21,\n    \"user_action\": \"awake\",\n    \"user_action_time\": \"2024-11-21T10:05:43Z\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/user_actions",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"user_actions"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "x-frame-options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "x-xss-protection",
+							"value": "0"
+						},
+						{
+							"key": "x-content-type-options",
+							"value": "nosniff"
+						},
+						{
+							"key": "x-permitted-cross-domain-policies",
+							"value": "none"
+						},
+						{
+							"key": "referrer-policy",
+							"value": "strict-origin-when-cross-origin"
+						},
+						{
+							"key": "content-type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "vary",
+							"value": "Accept, Origin"
+						},
+						{
+							"key": "etag",
+							"value": "W/\"111304395dd142905aea770c562bcf88\""
+						},
+						{
+							"key": "cache-control",
+							"value": "max-age=0, private, must-revalidate"
+						},
+						{
+							"key": "x-request-id",
+							"value": "ba59b681-6023-465e-91c1-115c2d3213e8"
+						},
+						{
+							"key": "x-runtime",
+							"value": "0.076194"
+						},
+						{
+							"key": "server-timing",
+							"value": "start_processing.action_controller;dur=0.01, sql.active_record;dur=7.64, instantiation.active_record;dur=2.37, transaction.active_record;dur=10.43, process_action.action_controller;dur=63.90"
+						},
+						{
+							"key": "Content-Length",
+							"value": "3832"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": [\n        {\n            \"id\": \"419\",\n            \"type\": \"user_action\",\n            \"attributes\": {\n                \"action\": \"awake\",\n                \"action_time\": \"2024-11-21T10:05:43.000Z\",\n                \"created_at\": \"2024-11-22T05:45:09.656Z\"\n            }\n        },\n        {\n            \"id\": \"418\",\n            \"type\": \"user_action\",\n            \"attributes\": {\n                \"action\": \"sleep\",\n                \"action_time\": \"2024-11-22T10:05:43.000Z\",\n                \"created_at\": \"2024-11-22T05:44:29.558Z\"\n            }\n        },\n        {\n            \"id\": \"417\",\n            \"type\": \"user_action\",\n            \"attributes\": {\n                \"action\": \"awake\",\n                \"action_time\": \"2024-11-22T05:38:47.639Z\",\n                \"created_at\": \"2024-11-22T05:38:47.691Z\"\n            }\n        },\n        {\n            \"id\": \"416\",\n            \"type\": \"user_action\",\n            \"attributes\": {\n                \"action\": \"sleep\",\n                \"action_time\": \"2024-11-22T05:38:41.386Z\",\n                \"created_at\": \"2024-11-22T05:38:41.500Z\"\n            }\n        },\n        {\n            \"id\": \"415\",\n            \"type\": \"user_action\",\n            \"attributes\": {\n                \"action\": \"awake\",\n                \"action_time\": \"2024-11-22T04:49:45.676Z\",\n                \"created_at\": \"2024-11-22T04:49:45.714Z\"\n            }\n        },\n        {\n            \"id\": \"414\",\n            \"type\": \"user_action\",\n            \"attributes\": {\n                \"action\": \"sleep\",\n                \"action_time\": \"2024-11-22T04:49:14.990Z\",\n                \"created_at\": \"2024-11-22T04:49:15.030Z\"\n            }\n        },\n        {\n            \"id\": \"224\",\n            \"type\": \"user_action\",\n            \"attributes\": {\n                \"action\": \"awake\",\n                \"action_time\": \"2024-11-15T05:24:53.000Z\",\n                \"created_at\": \"2024-11-21T10:08:12.322Z\"\n            }\n        },\n        {\n            \"id\": \"223\",\n            \"type\": \"user_action\",\n            \"attributes\": {\n                \"action\": \"sleep\",\n                \"action_time\": \"2024-11-15T03:24:53.000Z\",\n                \"created_at\": \"2024-11-21T10:08:12.317Z\"\n            }\n        },\n        {\n            \"id\": \"222\",\n            \"type\": \"user_action\",\n            \"attributes\": {\n                \"action\": \"awake\",\n                \"action_time\": \"2024-11-17T15:02:57.000Z\",\n                \"created_at\": \"2024-11-21T10:08:12.307Z\"\n            }\n        },\n        {\n            \"id\": \"221\",\n            \"type\": \"user_action\",\n            \"attributes\": {\n                \"action\": \"sleep\",\n                \"action_time\": \"2024-11-17T10:02:57.000Z\",\n                \"created_at\": \"2024-11-21T10:08:12.303Z\"\n            }\n        },\n        {\n            \"id\": \"220\",\n            \"type\": \"user_action\",\n            \"attributes\": {\n                \"action\": \"awake\",\n                \"action_time\": \"2024-11-17T03:21:56.000Z\",\n                \"created_at\": \"2024-11-21T10:08:12.294Z\"\n            }\n        },\n        {\n            \"id\": \"219\",\n            \"type\": \"user_action\",\n            \"attributes\": {\n                \"action\": \"sleep\",\n                \"action_time\": \"2024-11-17T00:21:56.000Z\",\n                \"created_at\": \"2024-11-21T10:08:12.289Z\"\n            }\n        },\n        {\n            \"id\": \"218\",\n            \"type\": \"user_action\",\n            \"attributes\": {\n                \"action\": \"awake\",\n                \"action_time\": \"2024-11-15T13:34:15.000Z\",\n                \"created_at\": \"2024-11-21T10:08:12.280Z\"\n            }\n        },\n        {\n            \"id\": \"217\",\n            \"type\": \"user_action\",\n            \"attributes\": {\n                \"action\": \"sleep\",\n                \"action_time\": \"2024-11-15T07:34:15.000Z\",\n                \"created_at\": \"2024-11-21T10:08:12.276Z\"\n            }\n        },\n        {\n            \"id\": \"216\",\n            \"type\": \"user_action\",\n            \"attributes\": {\n                \"action\": \"awake\",\n                \"action_time\": \"2024-11-14T19:41:21.000Z\",\n                \"created_at\": \"2024-11-21T10:08:12.266Z\"\n            }\n        },\n        {\n            \"id\": \"215\",\n            \"type\": \"user_action\",\n            \"attributes\": {\n                \"action\": \"sleep\",\n                \"action_time\": \"2024-11-14T17:41:21.000Z\",\n                \"created_at\": \"2024-11-21T10:08:12.262Z\"\n            }\n        },\n        {\n            \"id\": \"214\",\n            \"type\": \"user_action\",\n            \"attributes\": {\n                \"action\": \"awake\",\n                \"action_time\": \"2024-11-19T21:01:26.000Z\",\n                \"created_at\": \"2024-11-21T10:08:12.253Z\"\n            }\n        },\n        {\n            \"id\": \"213\",\n            \"type\": \"user_action\",\n            \"attributes\": {\n                \"action\": \"sleep\",\n                \"action_time\": \"2024-11-19T17:01:26.000Z\",\n                \"created_at\": \"2024-11-21T10:08:12.248Z\"\n            }\n        },\n        {\n            \"id\": \"212\",\n            \"type\": \"user_action\",\n            \"attributes\": {\n                \"action\": \"awake\",\n                \"action_time\": \"2024-11-16T07:43:57.000Z\",\n                \"created_at\": \"2024-11-21T10:08:12.238Z\"\n            }\n        },\n        {\n            \"id\": \"211\",\n            \"type\": \"user_action\",\n            \"attributes\": {\n                \"action\": \"sleep\",\n                \"action_time\": \"2024-11-15T23:43:57.000Z\",\n                \"created_at\": \"2024-11-21T10:08:12.234Z\"\n            }\n        },\n        {\n            \"id\": \"210\",\n            \"type\": \"user_action\",\n            \"attributes\": {\n                \"action\": \"awake\",\n                \"action_time\": \"2024-11-16T07:00:26.000Z\",\n                \"created_at\": \"2024-11-21T10:08:12.225Z\"\n            }\n        },\n        {\n            \"id\": \"209\",\n            \"type\": \"user_action\",\n            \"attributes\": {\n                \"action\": \"sleep\",\n                \"action_time\": \"2024-11-16T04:00:26.000Z\",\n                \"created_at\": \"2024-11-21T10:08:12.221Z\"\n            }\n        },\n        {\n            \"id\": \"208\",\n            \"type\": \"user_action\",\n            \"attributes\": {\n                \"action\": \"awake\",\n                \"action_time\": \"2024-11-20T00:07:02.000Z\",\n                \"created_at\": \"2024-11-21T10:08:12.212Z\"\n            }\n        },\n        {\n            \"id\": \"207\",\n            \"type\": \"user_action\",\n            \"attributes\": {\n                \"action\": \"sleep\",\n                \"action_time\": \"2024-11-19T21:07:02.000Z\",\n                \"created_at\": \"2024-11-21T10:08:12.206Z\"\n            }\n        },\n        {\n            \"id\": \"206\",\n            \"type\": \"user_action\",\n            \"attributes\": {\n                \"action\": \"awake\",\n                \"action_time\": \"2024-11-18T02:18:41.000Z\",\n                \"created_at\": \"2024-11-21T10:08:12.176Z\"\n            }\n        },\n        {\n            \"id\": \"205\",\n            \"type\": \"user_action\",\n            \"attributes\": {\n                \"action\": \"sleep\",\n                \"action_time\": \"2024-11-17T21:18:41.000Z\",\n                \"created_at\": \"2024-11-21T10:08:12.171Z\"\n            }\n        }\n    ]\n}"
+				},
+				{
+					"name": "422 - send awake request twice",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_id\": 21,\n    \"user_action\": \"awake\",\n    \"user_action_time\": \"2024-11-21T10:05:43Z\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/user_actions",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"user_actions"
+							]
+						}
+					},
+					"status": "Unprocessable Content",
+					"code": 422,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "x-frame-options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "x-xss-protection",
+							"value": "0"
+						},
+						{
+							"key": "x-content-type-options",
+							"value": "nosniff"
+						},
+						{
+							"key": "x-permitted-cross-domain-policies",
+							"value": "none"
+						},
+						{
+							"key": "referrer-policy",
+							"value": "strict-origin-when-cross-origin"
+						},
+						{
+							"key": "content-type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "vary",
+							"value": "Accept, Origin"
+						},
+						{
+							"key": "cache-control",
+							"value": "no-cache"
+						},
+						{
+							"key": "x-request-id",
+							"value": "bb310314-8366-4016-abd6-62a52952451c"
+						},
+						{
+							"key": "x-runtime",
+							"value": "0.029938"
+						},
+						{
+							"key": "server-timing",
+							"value": "start_processing.action_controller;dur=0.01, sql.active_record;dur=1.12, instantiation.active_record;dur=0.32, process_action.action_controller;dur=17.80"
+						},
+						{
+							"key": "Content-Length",
+							"value": "56"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"Invalid action. User can't track awake time.\"\n}"
+				}
+			]
+		},
+		{
+			"name": "follow",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"follower_id\": 21,\n    \"followed_id\": 37\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/api/v1/follows",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"follows"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "422 - followed user not found",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"follower_id\": 40,\n    \"followed_id\": 41\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/v1/follows",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"follows"
+							]
+						}
+					},
+					"status": "Unprocessable Content",
+					"code": 422,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "x-frame-options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "x-xss-protection",
+							"value": "0"
+						},
+						{
+							"key": "x-content-type-options",
+							"value": "nosniff"
+						},
+						{
+							"key": "x-permitted-cross-domain-policies",
+							"value": "none"
+						},
+						{
+							"key": "referrer-policy",
+							"value": "strict-origin-when-cross-origin"
+						},
+						{
+							"key": "content-type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "vary",
+							"value": "Accept, Origin"
+						},
+						{
+							"key": "cache-control",
+							"value": "no-cache"
+						},
+						{
+							"key": "x-request-id",
+							"value": "6ed728c0-55f6-4314-870e-63ab5a697ad0"
+						},
+						{
+							"key": "x-runtime",
+							"value": "0.028320"
+						},
+						{
+							"key": "server-timing",
+							"value": "start_processing.action_controller;dur=0.01, unpermitted_parameters.action_controller;dur=0.01, sql.active_record;dur=0.56, instantiation.active_record;dur=0.09, process_action.action_controller;dur=14.61"
+						},
+						{
+							"key": "Content-Length",
+							"value": "35"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"Followed user not found\"\n}"
+				},
+				{
+					"name": "422 - follower user not found",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"follower_id\": 20,\n    \"followed_id\": 41\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/v1/follows",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"follows"
+							]
+						}
+					},
+					"status": "Unprocessable Content",
+					"code": 422,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "x-frame-options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "x-xss-protection",
+							"value": "0"
+						},
+						{
+							"key": "x-content-type-options",
+							"value": "nosniff"
+						},
+						{
+							"key": "x-permitted-cross-domain-policies",
+							"value": "none"
+						},
+						{
+							"key": "referrer-policy",
+							"value": "strict-origin-when-cross-origin"
+						},
+						{
+							"key": "content-type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "vary",
+							"value": "Accept, Origin"
+						},
+						{
+							"key": "cache-control",
+							"value": "no-cache"
+						},
+						{
+							"key": "x-request-id",
+							"value": "245236c3-489b-4774-8d74-d87496445e65"
+						},
+						{
+							"key": "x-runtime",
+							"value": "0.041215"
+						},
+						{
+							"key": "server-timing",
+							"value": "start_processing.action_controller;dur=0.01, unpermitted_parameters.action_controller;dur=0.01, sql.active_record;dur=0.32, instantiation.active_record;dur=0.04, process_action.action_controller;dur=29.28"
+						},
+						{
+							"key": "Content-Length",
+							"value": "30"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"Follower not found\"\n}"
+				},
+				{
+					"name": "200",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"follower_id\": 21,\n    \"followed_id\": 38\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/v1/follows",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"follows"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "x-frame-options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "x-xss-protection",
+							"value": "0"
+						},
+						{
+							"key": "x-content-type-options",
+							"value": "nosniff"
+						},
+						{
+							"key": "x-permitted-cross-domain-policies",
+							"value": "none"
+						},
+						{
+							"key": "referrer-policy",
+							"value": "strict-origin-when-cross-origin"
+						},
+						{
+							"key": "cache-control",
+							"value": "no-cache"
+						},
+						{
+							"key": "x-request-id",
+							"value": "99af7338-bc4a-4f00-ba2d-6ed4b202977d"
+						},
+						{
+							"key": "x-runtime",
+							"value": "0.025166"
+						},
+						{
+							"key": "server-timing",
+							"value": "start_processing.action_controller;dur=0.01, unpermitted_parameters.action_controller;dur=0.01, sql.active_record;dur=4.42, instantiation.active_record;dur=0.10, transaction.active_record;dur=5.97, process_action.action_controller;dur=12.37"
+						},
+						{
+							"key": "vary",
+							"value": "Origin"
+						}
+					],
+					"cookie": [],
+					"body": null
+				},
+				{
+					"name": "422 - already follow user",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"follower_id\": 21,\n    \"followed_id\": 40\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/v1/follows",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"follows"
+							]
+						}
+					},
+					"status": "Unprocessable Content",
+					"code": 422,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "x-frame-options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "x-xss-protection",
+							"value": "0"
+						},
+						{
+							"key": "x-content-type-options",
+							"value": "nosniff"
+						},
+						{
+							"key": "x-permitted-cross-domain-policies",
+							"value": "none"
+						},
+						{
+							"key": "referrer-policy",
+							"value": "strict-origin-when-cross-origin"
+						},
+						{
+							"key": "content-type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "vary",
+							"value": "Accept, Origin"
+						},
+						{
+							"key": "cache-control",
+							"value": "no-cache"
+						},
+						{
+							"key": "x-request-id",
+							"value": "504eec8f-b2c2-45a6-b7b1-2822db2e2f72"
+						},
+						{
+							"key": "x-runtime",
+							"value": "0.075431"
+						},
+						{
+							"key": "server-timing",
+							"value": "sql.active_record;dur=10.20, start_processing.action_controller;dur=0.01, unpermitted_parameters.action_controller;dur=0.02, instantiation.active_record;dur=3.37, transaction.active_record;dur=2.59, process_action.action_controller;dur=28.58"
+						},
+						{
+							"key": "Content-Length",
+							"value": "74"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"Validation failed: Follower You've already followed this user.\"\n}"
+				}
+			]
+		}
+	]
+}
