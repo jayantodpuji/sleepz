@@ -10,8 +10,11 @@ module FollowService
 
     def call
       validate_params!
-      find_users!
-      create_follow_record
+
+      ActiveRecord::Base.transaction do
+        find_users!
+        create_follow_record
+      end
     end
 
     private
