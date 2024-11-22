@@ -30,14 +30,19 @@ cd sleepz
 bundle install
 ```
 
-3. Setup database
+3. Create .env from example.env file
+```bash
+cp example.env .env
+```
+
+4. Setup database
 ```bash
 rails db:create
 rails db:migrate
 rails db:seed
 ```
 
-4. Start the server
+5. Start the server
 ```bash
 rails server
 ```
