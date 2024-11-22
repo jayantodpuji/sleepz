@@ -2,7 +2,7 @@ class Follow < ApplicationRecord
   belongs_to :follower, class_name: "User", foreign_key: "follower_id"
   belongs_to :followed, class_name: "User", foreign_key: "followed_id"
 
-  validates :follower_id, uniqueness: { scope: :followed_id }
+  validates :follower_id, uniqueness: { scope: :followed_id, message: "You've already followed this user." }
   validate :follower_cannot_follow_self
 
   private def follower_cannot_follow_self
