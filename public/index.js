@@ -43,26 +43,49 @@ tabFollow.addEventListener("click", () => switchMenu(menuFollow));
 tabTimeline.addEventListener("click", () => switchMenu(menuTimeline));
 
 document.getElementById("submitClockIn").addEventListener("click", () => {
-  const user = clockInUser.value;
-  const action = clockInAction.value;
+  const user_id = clockInUser.value;
+  const user_action = clockInAction.value;
+  const user_action_time = new Date().toISOString(); // Current time in ISO 8601 format
 
-  fetch("https://dummyapi.com/clockin", {
+  fetch("http://localhost:3000/api/v1/user_actions", {
     method: "POST",
-    body: JSON.stringify({ user, action }),
+    body: JSON.stringify({ user_id, user_action, user_action_time }),
     headers: { "Content-Type": "application/json" },
   })
-    .then((response) => response.json())
-    .then((data) => {
-      clockInTableBody.innerHTML = data
+    .then(response => {
+      if (!response.ok) {
+        return response.json().then(err => Promise.reject(err));
+      }
+      return response.json();
+    })
+    .then((response) => {
+      clockInTableBody.innerHTML = response.data
         .map(
           (item, index) =>
             `<tr>
               <td>${index + 1}</td>
-              <td>${item.actionName}</td>
-              <td>${item.time}</td>
+              <td>${item.attributes.action}</td>
+              <td>${new Date(item.attributes.action_time).toLocaleString()}</td>
             </tr>`
         )
         .join("");
+    })
+    .catch(error => {
+      const errorBox = document.createElement('div');
+      errorBox.className = 'notification is-danger is-light';
+      errorBox.innerHTML = `
+        <button class="delete"></button>
+        ${error.error || 'Failed to submit action. Please try again.'}
+      `;
+
+      const clockInMenu = document.getElementById('menu-clock-in');
+      clockInMenu.insertBefore(errorBox, clockInMenu.firstChild);
+
+      errorBox.querySelector('.delete').addEventListener('click', () => {
+        errorBox.remove();
+      });
+
+      setTimeout(() => errorBox.remove(), 3000);
     });
 });
 
@@ -163,7 +186,17 @@ function fetchTimeline(userId, resetContent = false) {
 
       if (response.data.length > 0) {
         response.data.forEach(item => {
-          const hours = item.attributes.duration_in_second / 3600; // Convert seconds to hours
+          // Make sure we're working with an integer
+          const totalSeconds = parseInt(item.attributes.duration_in_second);
+
+          // Calculate hours, minutes, and remaining seconds
+          const hours = Math.floor(totalSeconds / 3600);
+          const minutes = Math.floor((totalSeconds % 3600) / 60);
+          const seconds = Math.floor(totalSeconds % 60);
+
+          // Create the duration string with all parts
+          const durationString = `${hours} hour${hours !== 1 ? 's' : ''} ${minutes} minute${minutes !== 1 ? 's' : ''} ${seconds} second${seconds !== 1 ? 's' : ''}`;
+
           const date = new Date(item.attributes.created_at).toLocaleDateString('en-US', {
             year: 'numeric',
             month: 'long',
@@ -174,7 +207,7 @@ function fetchTimeline(userId, resetContent = false) {
 
           const message = document.createElement('div');
           message.className = 'box mb-3';
-          message.innerHTML = `${item.attributes.user_display_name} has been sleep for ${hours} hours at ${date}`;
+          message.innerHTML = `${item.attributes.user_display_name} has been sleep for ${durationString} at ${date}`;
           timelineContent.appendChild(message);
         });
 
@@ -186,6 +219,22 @@ function fetchTimeline(userId, resetContent = false) {
       } else {
         loadMoreTimelineButton.classList.add("is-hidden");
       }
+    })
+    .catch(error => {
+      const errorBox = document.createElement('div');
+      errorBox.className = 'notification is-danger is-light';
+      errorBox.innerHTML = `
+        <button class="delete"></button>
+        Failed to load timeline. Please try again.
+      `;
+
+      timelineContent.insertBefore(errorBox, timelineContent.firstChild);
+
+      errorBox.querySelector('.delete').addEventListener('click', () => {
+        errorBox.remove();
+      });
+
+      setTimeout(() => errorBox.remove(), 3000);
     });
 }
 
