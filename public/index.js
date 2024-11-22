@@ -37,6 +37,26 @@ function populateOptions(selectElement, data) {
     .join("");
 }
 
+function formatDuration(seconds) {
+  const hours = Math.floor(seconds / 3600);
+  const minutes = Math.floor((seconds % 3600) / 60);
+  const remainingSeconds = seconds % 60;
+
+  const parts = [];
+
+  if (hours > 0) {
+    parts.push(`${hours} hour${hours > 1 ? 's' : ''}`);
+  }
+  if (minutes > 0) {
+    parts.push(`${minutes} minute${minutes > 1 ? 's' : ''}`);
+  }
+  if (remainingSeconds > 0 || parts.length === 0) {
+    parts.push(`${remainingSeconds} second${remainingSeconds > 1 ? 's' : ''}`);
+  }
+
+  return parts.join(', ');
+}
+
 // Event Listeners
 tabClockIn.addEventListener("click", () => switchMenu(menuClockIn));
 tabFollow.addEventListener("click", () => switchMenu(menuFollow));
@@ -189,14 +209,6 @@ function fetchTimeline(userId, resetContent = false) {
           // Make sure we're working with an integer
           const totalSeconds = parseInt(item.attributes.duration_in_second);
 
-          // Calculate hours, minutes, and remaining seconds
-          const hours = Math.floor(totalSeconds / 3600);
-          const minutes = Math.floor((totalSeconds % 3600) / 60);
-          const seconds = Math.floor(totalSeconds % 60);
-
-          // Create the duration string with all parts
-          const durationString = `${hours} hour${hours !== 1 ? 's' : ''} ${minutes} minute${minutes !== 1 ? 's' : ''} ${seconds} second${seconds !== 1 ? 's' : ''}`;
-
           const date = new Date(item.attributes.created_at).toLocaleDateString('en-US', {
             year: 'numeric',
             month: 'long',
@@ -207,7 +219,7 @@ function fetchTimeline(userId, resetContent = false) {
 
           const message = document.createElement('div');
           message.className = 'box mb-3';
-          message.innerHTML = `${item.attributes.user_display_name} has been sleep for ${durationString} at ${date}`;
+          message.innerHTML = `${item.attributes.user_display_name} has been sleep for ${formatDuration(totalSeconds)} at ${date}`;
           timelineContent.appendChild(message);
         });
 
