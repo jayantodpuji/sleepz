@@ -8,4 +8,6 @@ class SleepRecordSerializer
   end
 
   attribute :created_at
+
+  cache_options store: Rails.cache, namespace: 'sleep_record_serializer', expires_in: 3.minutes
 end
