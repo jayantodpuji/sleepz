@@ -7,6 +7,8 @@ module Api
         head :no_content
       rescue FollowService::UserNotFoundError, FollowService::InvalidActionError => e
         render json: { error: e.message }, status: :unprocessable_entity
+      rescue ActiveRecord::RecordInvalid => e
+        render json: { error: e.message }, status: :unprocessable_entity
       rescue StandardError => e
         render json: { error: e.message }, status: :internal_server_error
       end
