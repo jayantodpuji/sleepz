@@ -131,5 +131,9 @@ bundle exec rspec
 
 ## Access The Web App
 
-When you are already running the server, you can access it in localhost:3000/index.html
+When you are already running the server, you can access it in `localhost:3000/index.html`
+
+## Testing via Postman
+
+You can export the [collection](sleepz.postman_collection.json) to your postman client
 
