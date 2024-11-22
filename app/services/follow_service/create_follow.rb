@@ -32,8 +32,6 @@ module FollowService
 
     def create_follow_record
       Follow.create!(follower: follower, followed: followed)
-    rescue ActiveRecord::RecordInvalid => e
-      raise InvalidActionError, e.message
     end
   end
 end

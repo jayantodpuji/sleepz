@@ -7,8 +7,8 @@ module Api
         head :no_content
       rescue FollowService::UserNotFoundError, FollowService::InvalidActionError => e
         render json: { error: e.message }, status: :unprocessable_entity
-      rescue StandardError
-        render json: { error: 'An unexpected error occurred. Please try again later.' }, status: :internal_server_error
+      rescue StandardError => e
+        render json: { error: e.message }, status: :internal_server_error
       end
 
       private def follow_params

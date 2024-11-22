@@ -22,8 +22,8 @@ module Api
         ).serializable_hash, status: :ok
       rescue TimelineService::UserNotFoundError => e
         render json: { error: e.message }, status: :unprocessable_entity
-      rescue StandardError
-        render json: { error: 'An unexpected error occurred. Please try again later.' }, status: :internal_server_error
+      rescue StandardError => e
+        render json: { error: e.message }, status: :internal_server_error
       end
 
       # can ignore this since it's not part of requirement
