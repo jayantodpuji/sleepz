@@ -25,6 +25,16 @@ module Api
       rescue StandardError
         render json: { error: 'An unexpected error occurred. Please try again later.' }, status: :internal_server_error
       end
+
+      # can ignore this since it's not part of requirement
+      def index
+        users = User.all
+
+        render json: users, status: :ok
+      rescue StandardError
+        render json: { error: 'An unexpected error occurred. Please try again later.' }, status: :internal_server_error
+      end
+
     end
   end
 end

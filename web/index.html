@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Web App</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <script defer src="index.js"></script>
+</head>
+<body>
+  <section class="section">
+    <div class="container">
+      <h1 class="title">Web App</h1>
+
+      <!-- Tabs -->
+      <div class="tabs">
+        <ul>
+          <li id="tab-clock-in" class="is-active"><a>Clock-In</a></li>
+          <li id="tab-follow"><a>Follow</a></li>
+          <li id="tab-timeline"><a>Timeline</a></li>
+        </ul>
+      </div>
+
+      <!-- Clock-In Menu -->
+      <div id="menu-clock-in">
+        <div class="field">
+          <label class="label">Select User</label>
+          <div class="control">
+            <div class="select">
+              <select id="clockInUser"></select>
+            </div>
+          </div>
+        </div>
+        <div class="field">
+          <label class="label">Select Action</label>
+          <div class="control">
+            <div class="select">
+              <select id="clockInAction">
+                <option value="sleep">Sleep</option>
+                <option value="awake">Awake</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="control">
+          <button class="button is-primary" id="submitClockIn">Submit</button>
+        </div>
+        <table class="table is-fullwidth mt-4">
+          <thead>
+            <tr>
+              <th>No</th>
+              <th>Action Name</th>
+              <th>Time</th>
+            </tr>
+          </thead>
+          <tbody id="clockInTableBody"></tbody>
+        </table>
+      </div>
+
+      <!-- Follow Menu -->
+      <div id="menu-follow" class="is-hidden">
+        <div class="field">
+          <label class="label">Select User</label>
+          <div class="control">
+            <div class="select">
+              <select id="followUser"></select>
+            </div>
+          </div>
+        </div>
+        <div class="field">
+          <label class="label">Select User to Follow</label>
+          <div class="control">
+            <div class="select">
+              <select id="followTarget"></select>
+            </div>
+          </div>
+        </div>
+        <div class="control">
+          <button class="button is-primary" id="submitFollow">Submit</button>
+        </div>
+      </div>
+
+      <!-- Timeline Menu -->
+      <div id="menu-timeline" class="is-hidden">
+        <div class="field">
+          <label class="label">Select User</label>
+          <div class="control">
+            <div class="select">
+              <select id="timelineUser"></select>
+            </div>
+          </div>
+        </div>
+        <div class="control">
+          <button class="button is-primary" id="loadTimeline">Load Timeline</button>
+        </div>
+        <div id="timelineContent" class="mt-4"></div>
+        <button class="button is-primary is-hidden" id="loadMoreTimeline">Load More</button>
+      </div>
+    </div>
+  </section>
+</body>
+</html>
