@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :user_actions, only: [:create]
       resources :follows, only: [:create]
-      resources :users, only: [] do
+      resources :users, only: [:index] do
         get :timeline, on: :member
       end
     end
