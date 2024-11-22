@@ -15,8 +15,8 @@ module TimelineService
       sleep_records = SleepRecord
         .includes([:user])
         .where(user_id: user.followings.pluck(:followed_id))
-        .where('created_at >= ?', 1.week.ago)
-        .where('duration_in_second is not null')
+        .where("created_at >= ?", 1.week.ago)
+        .where("duration_in_second is not null")
         .order(duration_in_second: :desc)
         .page(page)
         .per(per)

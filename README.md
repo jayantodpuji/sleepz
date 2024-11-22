@@ -135,5 +135,5 @@ When you are already running the server, you can access it in `localhost:3000/in
 
 ## Testing via Postman
 
-You can export the [collection](sleepz.postman_collection.json) to your postman client
+You can import the [collection](sleepz.postman_collection.json) to your postman client
 
