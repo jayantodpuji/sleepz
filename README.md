@@ -142,3 +142,13 @@ When you are already running the server, you can access it in `localhost:3000/in
 
 You can import the [collection](sleepz.postman_collection.json) to your postman client
 
+
+
+
+## to uuid
+
+https://pawelurbanek.com/uuid-order-rails
+
+https://ptrchm.com/posts/rails-uuid-v7/
+
+https://guides.rubyonrails.org/v5.0/active_record_postgresql.html#uuid
